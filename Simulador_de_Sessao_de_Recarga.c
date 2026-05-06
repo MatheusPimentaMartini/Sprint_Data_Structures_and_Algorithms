@@ -16,7 +16,7 @@ void menu(void){ // uso de void para função que não devolve resultados
 
 int main (){
     int opcao = 0, porcentagem_atual = 0, porcentagem_desejada = 0, capacidade, potencia = 50; // Indicando o tipo e o valor das variaveis
-     int valor = 0, tempo = 0;
+     float valor = 0, tempo = 0;
 
     while(opcao != 6){ //iniciando a estrutura de reptição while
 
@@ -45,8 +45,9 @@ int main (){
 
             if (capacidade < 1 || capacidade > 120){// Estrutura if se a capacidade for maior que 120 ou menor que 1 --caso 1--
                 printf("ERRO! Valor invalido\n");// Se verdadeiro exibir respota invalida. --caso 1--
-           
+            }
             break;//Encerrando o --caso 1-- e retornando as escolhas no menu
+            
 
 
         case 2://Iniciando o --caso 2-- do menu
@@ -84,10 +85,15 @@ int main (){
 
 
         case 4: {//Inicializando a escolha do --caso 4--
+            if(capacidade == 0 || porcentagem_desejada == 0){
+                printf("Preencha os dados primeiro\n");
+            break;
+            }
+
             int diferenca = porcentagem_desejada - porcentagem_atual;//indicando tipo e calculando o valor da variavel  --caso 4--
             float energia = capacidade * (diferenca / 100.0);//indicando tipo e calculando o valor da variavel --caso 4--
-            float valor = energia * 4.00;//indicando tipo e calculando o valor da variavel --caso 4--
-            float tempo = energia / potencia;//indicando tipo e calculando o valor da variavel --caso 4--
+            valor = energia * 4.00;//indicando tipo e calculando o valor da variavel --caso 4--
+            tempo = (energia / potencia)* 60;//indicando tipo e calculando o valor da variavel --caso 4--
             printf("valor a pagar e de R$ %.2f\n", valor);//Exibindo o resultado do valor a ser pago da variavel --caso 4--
             printf("O tempos estimado e de %f minutos\n", tempo);//Exibindo o resultado do tempo que levara para o carregamento completo --caso 4--
 
@@ -100,7 +106,7 @@ int main (){
 
         case 5://Iniciando a escolha do --caso 5--
        
-            if(valor == 0, tempo == 0){//Estrutura if para identificação do valor invalido --caso 5--
+            if(valor == 0 || tempo == 0){//Estrutura if para identificação do valor invalido --caso 5--
                 printf("Informações não enseridas");//Se verdadeiro exibir  --caso 5--
                 }else{//Estrura else para outros valores  --caso 5--
                     printf("Carregamento em andamento...\n");//Exibir --caso 5--
@@ -121,5 +127,4 @@ int main (){
 
 
     return 0;
-}
 }
